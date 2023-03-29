@@ -13,6 +13,9 @@ const SecondMenu = React.lazy(() =>
 const BlankPage = React.lazy(() =>
   import(/* webpackChunkName: "viwes-blank-page" */ './blank-page')
 );
+const Orders = React.lazy(() =>
+  import(/* webpackChunkName: "viwes-blank-page" */ './orders/index')
+);
 
 const App = ({ match }) => {
   return (
@@ -20,9 +23,9 @@ const App = ({ match }) => {
       <div className="dashboard-wrapper">
         <Suspense fallback={<div className="loading" />}>
           <Switch>
-            <Redirect exact from={`${match.url}/`} to={`${match.url}/gogo`} />
+            {/* <Redirect exact from={`${match.url}/`} to={`${match.url}/gogo`} /> */}
             <Route
-              path={`${match.url}/gogo`}
+              path={`${match.url}`}
               render={(props) => <Gogo {...props} />}
             />
             <Route
@@ -30,9 +33,14 @@ const App = ({ match }) => {
               render={(props) => <SecondMenu {...props} />}
             />
             <Route
+              path={`app/orderssss`}
+              render={(props) => <Orders {...props} />}
+            />
+            {/* <Route
               path={`${match.url}/blank-page`}
               render={(props) => <BlankPage {...props} />}
-            />
+            /> */}
+
             <Redirect to="/error" />
           </Switch>
         </Suspense>

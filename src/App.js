@@ -12,9 +12,10 @@ import ColorSwitcher from './components/common/ColorSwitcher';
 import { NotificationContainer } from './components/common/react-notifications';
 import { isMultiColorActive, adminRoot } from './constants/defaultValues';
 import { getDirection } from './helpers/Utils';
+import './style.css';
 const ViewUser = React.lazy(() =>
   import(/* webpackChunkName: "views-user" */ './views/user')
-)
+);
 const ViewHome = React.lazy(() =>
   import(/* webpackChunkName: "views" */ './views/home')
 );
@@ -24,6 +25,9 @@ const ViewApp = React.lazy(() =>
 
 const ViewError = React.lazy(() =>
   import(/* webpackChunkName: "views-error" */ './views/error')
+);
+const Orders = React.lazy(() =>
+  import(/* webpackChunkName: "viwes-blank-page" */ './views/app/orders')
 );
 
 class App extends React.Component {
@@ -60,10 +64,14 @@ class App extends React.Component {
                     render={(props) => <ViewApp {...props} />}
                   />
                   <Route
-                  path="/user"
-                  render={(props) => <ViewUser {...props} />}
-                />
-                
+                    path="/user"
+                    render={(props) => <ViewUser {...props} />}
+                  />
+                  <Route
+                    path="/orders"
+                    // render={(props) => <ViewUser {...props} />}
+                    render={(props) => <Orders {...props} />}
+                  />
                   <Route
                     path="/error"
                     exact
